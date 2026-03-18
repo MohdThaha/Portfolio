@@ -1,124 +1,101 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-// import { useTheme } from '../context/ThemeContext'; // Comment out theme context
-import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const { isDark, setIsDark } = useTheme(); // Comment out theme usage
+  const [nav, setNav] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  const navItems = [
-    { path: '/Portfolio', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/skills', label: 'Skills' },
-    { path: '/experience', label: 'Experience' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/achievements', label: 'Achievements' },
-    { path: '/contact', label: 'Contact' },
+  const links = [
+    { id: 1, link: 'Home', path: '/Portfolio' },
+    { id: 2, link: 'About', path: '/about' },
+    { id: 3, link: 'Experience', path: '/experience' },
+    { id: 4, link: 'Projects', path: '/projects' },
+    { id: 5, link: 'Contact', path: '/contact' },
   ];
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black/80 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Updated Logo/Name */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                MTD
-              </span>
-              <div className="h-6 w-px bg-gray-600 mx-3"></div>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium text-gray-300">Mohammed</span>
-                <span className="text-xs text-gray-400">Backend Engineer</span>
-              </div>
-            </div>
-          </Link>
+    <nav className={`fixed w-full h-24 z-50 transition-all duration-500 ${scrolled ? 'bg-background border-b border-nike-darkgray' : 'bg-transparent'}`}>
+      <div className="max-w-[1600px] mx-auto flex justify-between items-center w-full h-full px-6 md:px-12">
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md
-                  ${location.pathname === item.path
-                    ? 'text-blue-500 bg-blue-500/10'
-                    : 'text-gray-300 hover:text-blue-400 hover:bg-blue-500/5'
-                  }`}
-              >
-                {item.label}
-                {location.pathname === item.path && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute left-0 right-0 bottom-0 h-0.5 bg-blue-500"
-                  />
-                )}
-              </Link>
-            ))}
+        {/* Logo */}
+        <Link to="/Portfolio" className="z-50 relative group">
+          <div className="text-4xl font-nike font-bold tracking-tighter uppercase text-nike-white">
+            M<span className="text-nike-volt">T</span>D
           </div>
+          <div className="absolute -bottom-2 left-0 w-0 h-1 bg-nike-volt transition-all duration-300 group-hover:w-full"></div>
+        </Link>
 
-          <div className="flex items-center space-x-4">
-            {/* Remove theme toggle button */}
-            
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <FiX className="w-6 h-6 text-gray-300" />
-              ) : (
-                <FiMenu className="w-6 h-6 text-gray-300" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-10">
+          {links.map(({ id, link, path }) => {
+            const isActive = location.pathname === path;
+            return (
+              <li key={id} className="relative group overflow-hidden">
+                <Link
+                  to={path}
+                  className={`font-nike uppercase tracking-widest text-lg transition-colors duration-300 ${isActive ? 'text-nike-volt' : 'text-nike-white group-hover:text-nike-gray'}`}
+                >
+                  {link}
+                </Link>
+                <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-nike-volt transform origin-left transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></div>
+              </li>
+            );
+          })}
+        </ul>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-black/95"
+        {/* Mobile Navigation Toggle */}
+        <div
+          onClick={() => setNav(!nav)}
+          className="cursor-pointer z-50 md:hidden text-nike-white hover:text-nike-volt transition-colors flex flex-col gap-1.5"
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === item.path
-                    ? 'text-blue-500'
-                    : 'text-gray-300 hover:text-blue-400'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+          <div className={`w-8 h-1 bg-current transform transition-all duration-300 ${nav ? 'rotate-45 translate-y-2.5' : ''}`}></div>
+          <div className={`w-8 h-1 bg-current transition-all duration-300 ${nav ? 'opacity-0' : ''}`}></div>
+          <div className={`w-8 h-1 bg-current transform transition-all duration-300 ${nav ? '-rotate-45 -translate-y-2.5' : ''}`}></div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {nav && (
+            <motion.div
+              initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+              animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+              exit={{ opacity: 0, clipPath: 'inset(100% 0 0% 0)' }}
+              transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
+              className="fixed inset-0 bg-background z-40 flex flex-col justify-center px-12"
+            >
+              <ul className="flex flex-col gap-8">
+                {links.map(({ id, link, path }) => (
+                  <motion.li
+                    key={id}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + (id * 0.1), duration: 0.5 }}
+                  >
+                    <Link
+                      onClick={() => setNav(false)}
+                      to={path}
+                      className="font-nike text-6xl uppercase tracking-tighter text-nike-white hover:text-nike-volt transition-colors inline-block text-stroke"
+                    >
+                      {link}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </nav>
   );
 };
 

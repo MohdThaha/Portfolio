@@ -1,84 +1,101 @@
 import React from 'react';
-import PageTransition from './common/PageTransition';
+import { motion } from 'framer-motion';
+import { EXPERIENCES, EDUCATION } from '../constants';
 
 const Experience = () => {
-  const experiences = [
-    {
-      id: 'cygnonex-2024',
-      company: "Cygnonex Innovation Pvt Ltd",
-      role: "Junior Full Stack Developer",
-      period: "March 2024 - Present",
-      achievements: [
-        {
-          id: 'cygnonex-achievement-1',
-          text: "Developing backend infrastructure for BillBizz ERP platform"
-        },
-        {
-          id: 'cygnonex-achievement-2',
-          text: "Implementing security features including AWS Cognito and JWT authentication"
-        },
-        {
-          id: 'cygnonex-achievement-3',
-          text: "Working with CI/CD pipelines using Jenkins"
-        },
-        {
-          id: 'cygnonex-achievement-4',
-          text: "Optimizing API performance and infrastructure costs"
-        },
-        {
-          id: 'cygnonex-achievement-5',
-          text: "Collaborating with team members on development tasks"
-        },
-        {
-          id: 'cygnonex-achievement-6',
-          text: "Learning and implementing best practices in software development"
-        }
-      ],
-      techStack: ["Node.js", "Express.js", "MongoDB", "AWS", "Jenkins", "JWT", "AWS Cognito"]
-    }
-  ];
-
   return (
-    <PageTransition>
-      <div name="experience" className="w-full min-h-screen bg-gradient-to-b from-black to-gray-800 text-white">
-        <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
-          <div className="pb-8">
-            <p className="text-4xl font-bold inline border-b-4 border-gray-500">
-              Experience
-            </p>
-          </div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="max-w-[1600px] mx-auto px-6 md:px-12 py-12 lg:py-24"
+    >
+      <div className="mb-20">
+        <h2 className="text-[clamp(4rem,8vw,8rem)] font-nike font-black uppercase leading-none tracking-tighter">
+          TRACK
+          <br />
+          <span className="text-stroke">RECORD</span>
+        </h2>
+      </div>
 
+      <div className="flex flex-col xl:flex-row gap-16">
+        
+        {/* Professional Experience */}
+        <div className="flex-[2]">
+          <h3 className="text-sub text-3xl mb-8 border-b-2 border-nike-darkgray pb-4">PROFESSIONAL</h3>
+          
           <div className="space-y-12">
-            {experiences.map((exp) => (
-              <div 
+            {EXPERIENCES.map((exp, idx) => (
+              <motion.div 
                 key={exp.id}
-                className="bg-gray-800 rounded-lg p-6 hover:shadow-lg hover:shadow-blue-500/20 transition-all"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.2 }}
+                className="nike-panel relative group"
               >
-                <h3 className="text-2xl font-bold text-gray-300 mb-2">{exp.company}</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="text-accent-light font-semibold">{exp.role}</span>
-                  <span className="text-gray-400">|</span>
-                  <span className="text-gray-400">{exp.period}</span>
-                </div>
-                <ul className="list-disc list-inside space-y-2 text-gray-400">
-                  {exp.achievements.map((achievement) => (
-                    <li key={achievement.id} className="ml-4">{achievement.text}</li>
-                  ))}
-                </ul>
-                <div className="mt-4">
-                  <h4 className="text-lg font-semibold text-gray-300">Tech Stack:</h4>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {exp.techStack.map((tech, index) => (
-                      <span key={index} className="bg-gray-700 text-gray-300 px-2 py-1 rounded-md">{tech}</span>
-                    ))}
+                {/* Volt Accent Line */}
+                <div className="absolute top-0 left-0 w-2 h-0 bg-nike-volt group-hover:h-full transition-all duration-300"></div>
+
+                <div className="flex flex-col md:flex-row justify-between md:items-end mb-8 gap-4">
+                  <div>
+                    <h4 className="font-nike font-bold text-4xl text-nike-white uppercase tracking-wide">{exp.role}</h4>
+                    <p className="font-sans text-nike-gray text-lg mt-1">{exp.company}</p>
+                  </div>
+                  <div className="font-nike text-nike-volt text-2xl tracking-widest bg-nike-darkgray/30 px-4 py-1 self-start md:self-auto">
+                    {exp.period}
                   </div>
                 </div>
-              </div>
+
+                <ul className="space-y-4 mb-8">
+                  {exp.achievements.map((ach, i) => (
+                    <li key={i} className="flex gap-4 items-start font-sans text-nike-gray">
+                      <span className="text-nike-volt shrink-0 block mt-1">▹</span>
+                      <span>{ach}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-3">
+                  {exp.techStack.map((tech, i) => (
+                    <span key={i} className="font-sans text-xs font-bold tracking-widest uppercase bg-nike-white text-black px-3 py-1">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Education */}
+        <div className="flex-1 xl:max-w-md">
+          <h3 className="text-sub text-3xl mb-8 border-b-2 border-nike-darkgray pb-4">ACADEMIC</h3>
+          
+          <div className="space-y-8">
+            {EDUCATION.map((edu, idx) => (
+              <motion.div 
+                key={edu.id}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + (idx * 0.1) }}
+                className="group border border-nike-darkgray p-8 hover:border-nike-white transition-colors"
+              >
+                <div className="font-nike text-nike-volt text-xl tracking-widest mb-4">
+                  {edu.period}
+                </div>
+                <h4 className="font-nike font-bold text-3xl text-nike-white uppercase leading-tight mb-2 group-hover:text-nike-volt transition-colors">
+                  {edu.degree}
+                </h4>
+                <p className="font-sans text-nike-gray">
+                  {edu.institution}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
-    </PageTransition>
+    </motion.div>
   );
 };
 

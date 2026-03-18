@@ -1,193 +1,86 @@
-import React, { useState } from 'react';
-import { FaGraduationCap, FaBriefcase, FaCode, FaServer, FaDownload } from 'react-icons/fa';
+import React from 'react';
 import { motion } from 'framer-motion';
-import PageTransition from './common/PageTransition';
-import { getAssetPath } from '../utils/assetHelpers';
+import { SKILLS, PERSONAL_INFO } from '../constants';
 
 const About = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadError, setDownloadError] = useState(null);
-
-  const handleDownloadResume = async () => {
-    try {
-      setIsDownloading(true);
-      setDownloadError(null);
-      const resumePath = getAssetPath('/assets/pdf/Mohammed_Thaha_Resume.pdf');
-      const response = await fetch(resumePath, {
-        headers: {
-          'Content-Type': 'application/pdf',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch resume');
-      }
-      
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Mohammed Thaha CV.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error downloading resume:', error);
-      setDownloadError('Failed to download resume');
-    } finally {
-      setIsDownloading(false);
-    }
-  };
-
   return (
-    <PageTransition>
-      <div name="about" className="w-full min-h-screen bg-gradient-to-b from-black to-gray-800">
-        <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
-          <div className="pb-8 flex justify-between items-center">
-            <p className="text-4xl font-bold inline border-b-4 border-gray-500 text-white">
-              About Me
-            </p>
-            {/* Resume Download Button */}
-            <button
-              onClick={handleDownloadResume}
-              disabled={isDownloading}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg 
-                hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isDownloading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <FaDownload className="text-lg" />
-              )}
-              <span>{isDownloading ? 'Downloading...' : 'Download CV'}</span>
-            </button>
-          </div>
-
-          {/* Profile Section */}
-          <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
-            {/* Profile Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-64 h-64 relative group"
-            >
-              <div className="absolute inset-0 bg-blue-500 rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
-              <img
-                src={getAssetPath('/assets/images/profile_pic.jpg')}
-                alt="Mohammed Thaha"
-                className="w-64 h-64 object-cover rounded-xl relative z-10"
-                onError={(e) => {
-                  e.target.src = getAssetPath('/assets/images/placeholder.jpg');
-                  e.target.onerror = null;
-                }}
-              />
-            </motion.div>
-
-            {/* Introduction */}
-            <div className="flex-1">
-              <div className="text-xl text-gray-300 space-y-4">
-                <p>
-                  I am a passionate Backend Engineer with expertise in DevOps practices and cloud technologies.
-                  With a strong foundation in building scalable applications and implementing robust infrastructure solutions,
-                  I specialize in creating efficient, maintainable, and secure systems.
-                </p>
-                <p>
-                  My journey in technology has been driven by a constant desire to learn and adapt to emerging technologies,
-                  particularly in the realm of cloud computing and microservices architecture.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Experience & Skills */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            {/* What I Do */}
-            <div className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-blue-400 mb-4 flex items-center gap-2">
-                <FaCode />
-                What I Do
-              </h3>
-              <ul className="list-none space-y-3 text-gray-300">
-                <li className="flex items-center gap-2">
-                  <FaServer className="text-blue-400" />
-                  Develop full-stack applications using MERN technology
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaServer className="text-blue-400" />
-                  Design and implement scalable backend architectures
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaServer className="text-blue-400" />
-                  Set up and manage CI/CD pipelines
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaServer className="text-blue-400" />
-                  Cloud infrastructure management
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaServer className="text-blue-400" />
-                  Database design and optimization
-                </li>
-              </ul>
-            </div>
-
-            {/* Education & Experience */}
-            <div className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-blue-400 mb-4 flex items-center gap-2">
-                <FaGraduationCap />
-                Education & Experience
-              </h3>
-              <div className="space-y-4 text-gray-300">
-                <div>
-                  <h4 className="font-semibold text-white">Professional Experience</h4>
-                  <div className="flex items-start gap-2 mt-2">
-                    <FaBriefcase className="mt-1 text-blue-400" />
-                    <div>
-                      <p className="font-medium">Junior Full Stack Developer</p>
-                      <p className="text-sm">Cygnonex Innovation Pvt Ltd</p>
-                      <p className="text-sm text-gray-400">March 2024 - Present</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-white">Education</h4>
-                  <div className="flex items-start gap-2 mt-2">
-                    <FaGraduationCap className="mt-1 text-blue-400" />
-                    <div>
-                      <p className="font-medium">Bachelor's Degree in Computer Science</p>
-                      <p className="text-sm">Valia Koonambaikulathamma College of Engineering & Technology</p>
-                      <p className="text-sm text-gray-400">2019 - 2023</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="max-w-[1600px] mx-auto px-6 md:px-12 py-12 lg:py-24"
+    >
+      <div className="flex flex-col lg:flex-row gap-16 mb-24">
+        
+        {/* Massive Text Header */}
+        <div className="flex-1">
+          <motion.h2 
+            initial={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' }}
+            animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+            transition={{ duration: 0.8 }}
+            className="text-[clamp(4rem,8vw,8rem)] font-nike font-black uppercase leading-none tracking-tighter"
+          >
+            CORE
+            <br />
+            <span className="text-nike-volt">ENGINE</span>
+          </motion.h2>
           
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-2 w-32 bg-nike-white mt-8 origin-left"
+          ></motion.div>
+        </div>
 
-          {/* Work Philosophy */}
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-blue-400 mb-4 flex items-center gap-2">
-              <FaCode />
-              Work Philosophy
-            </h3>
-            <p className="text-gray-300">
-              I believe in the power of collaboration and continuous learning. I strive to create a positive and inclusive work environment,
-              where everyone's voice is heard and valued. I am committed to staying updated with the latest technologies and best practices,
-              and I am always eager to learn from my colleagues and mentors.
-            </p>
-          </div>
+        {/* Philosophy Block */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex-1 flex flex-col justify-center border-l-4 border-nike-volt pl-8"
+        >
+          <p className="text-2xl md:text-3xl font-nike font-bold uppercase tracking-wide leading-tight mb-6">
+            "{PERSONAL_INFO.philosophy}"
+          </p>
+          <p className="text-lg text-nike-gray max-w-xl">
+            Focus heavily on SaaS Platforms, ERP Systems, and Microservices architectures. 
+            Scaling systems isn't just about throwing more servers at the problem. It's about data integrity, observability, and resilient design. By utilizing advanced paradigms like event-sourcing, CQRS, and the SAGA pattern, I ensure systems are globally resilient.
+          </p>
+        </motion.div>
+      </div>
 
-          {downloadError && (
-            <p className="text-red-500 text-sm mt-2">{downloadError}</p>
-          )}
+      {/* Aggressive Grid for Skills */}
+      <div className="mb-12">
+        <h3 className="text-sub text-3xl mb-8 border-b-2 border-nike-darkgray pb-4">TECHNICAL ARSENAL</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SKILLS.map((skillGroup, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + (idx * 0.1) }}
+              className={`nike-panel flex flex-col ${idx === 3 || idx === 4 ? 'lg:col-span-2' : ''}`}
+            >
+              <h4 className="font-nike text-3xl uppercase font-bold text-nike-white mb-6 tracking-wide">
+                {skillGroup.category}
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                {skillGroup.items.map((item, i) => (
+                  <span 
+                    key={i} 
+                    className="font-sans font-bold text-sm tracking-wider uppercase px-4 py-2 border border-nike-darkgray hover:border-nike-volt hover:bg-nike-volt hover:text-black transition-all cursor-crosshair"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </PageTransition>
+
+    </motion.div>
   );
 };
 

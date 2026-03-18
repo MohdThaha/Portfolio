@@ -1,116 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@500,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #050505;
+  }
+  
   body {
-    @apply antialiased;
+    @apply bg-background text-nike-white font-sans antialiased selection:bg-nike-volt selection:text-black overflow-x-hidden;
+  }
+
+  /* Sharp Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-nike-darkgray hover:bg-nike-volt transition-colors;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer components {
+  /* Brutalist UI styling - sharp corners, huge contrast */
+  .nike-panel {
+    @apply bg-surface border border-nike-darkgray p-8 transition-colors duration-300;
+  }
+
+  .nike-panel:hover {
+    @apply border-nike-volt;
+  }
+  
+  .btn-nike {
+    @apply uppercase font-nike font-bold tracking-widest px-8 py-4 bg-nike-white text-black hover:bg-nike-volt hover:text-black transition-all duration-300 ease-in-out border-2 border-transparent focus:ring-4 focus:ring-nike-volt/50 flex items-center justify-center gap-2;
+  }
+
+  .btn-nike-outline {
+    @apply uppercase font-nike font-bold tracking-widest px-8 py-4 bg-transparent text-nike-white border-2 border-nike-darkgray hover:border-nike-white transition-all duration-300 ease-in-out flex items-center justify-center gap-2;
+  }
+
+  .text-huge {
+    @apply font-nike font-extrabold uppercase leading-[0.85] tracking-tighter text-nike-white;
+    font-size: clamp(4rem, 12vw, 15rem);
+  }
+
+  .text-sub {
+    @apply font-nike font-semibold uppercase tracking-widest text-nike-volt;
+  }
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+.clip-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+.text-stroke {
+  -webkit-text-stroke: 1px #333333;
+  color: transparent;
+}
+.text-stroke:hover {
+  -webkit-text-stroke: 1px #D1FF27;
+  color: #D1FF27;
+  transition: all 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-blue-500/50 rounded-full hover:bg-blue-400;
-}
-
-/* Carousel Styles */
-.slick-slider {
-  margin: 0;
-  width: 100vw;
-}
-
-.slick-slide {
-  padding: 0 8px;
-}
-
-.slick-slide > div {
+/* Aggressive marquee */
+.marquee-container {
   display: flex;
-  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  background-color: #D1FF27; /* Volt green ticker */
+  color: black;
+  padding: 1rem 0;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
 }
 
-.slick-track {
-  display: flex !important;
-}
-
-/* Hide arrows */
-.slick-prev,
-.slick-next {
-  display: none !important;
-}
-
-/* Optional: Remove dots if they appear */
-.slick-dots {
-  display: none !important;
-}
-
-/* Ensure text alignment */
-.slick-slide > div > div {
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-}
-
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.page-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.page-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Add custom font classes */
-.font-space-grotesk {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.font-clash-display {
-  font-family: 'Clash Display', sans-serif;
-}
-
-.font-general-sans {
-  font-family: 'General Sans', sans-serif;
-}
-
-/* Add more professional transitions */
-.hover-effect {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-/* Add consistent spacing */
-.section-padding {
-  @apply py-16 md:py-24;
-}
-
-/* Add professional shadows */
-.card-shadow {
-  @apply shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20;
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
 }
