@@ -1,31 +1,55 @@
+const publicPath = process.env.PUBLIC_URL || '/Portfolio';
+
 export const PERSONAL_INFO = {
   name: "Mohammed Thaha",
-  role: "Backend & Cloud Engineer",
-  tagline: "I build scalable SaaS platforms, ERP systems, and cloud-native microservices.",
+  role: "Software Engineer Backend",
+  tagline: "I design production-grade APIs, SaaS platforms, ERP systems, and cloud-native services that stay calm under load.",
   github: "https://github.com/MohdThaha",
-  linkedin: "https://www.linkedin.com/in/mohammed-thaha-dawood-4b2908291/",
+  linkedin: "https://www.linkedin.com/in/mohammed-thaha-dawood/",
   email: "thahad2@gmail.com",
-  philosophy: "Solve today's problem cleanly. Don't engineer for a scale you haven't earned yet. Clean APIs, honest code, systems that don't wake you up at 3am."
+  resume: `${publicPath}/assets/pdf/Mohammed_Thaha.pdf`,
+  philosophy: "Clean APIs, honest architecture, resilient systems, and product decisions that survive real users."
 };
 
 export const HIGHLIGHTS = [
-  { label: "Role", value: "Backend Developer" },
-  { label: "Focus", value: "SaaS & ERP" },
-  { label: "Stack", value: "Node, AWS, Docker" },
+  { label: "Current", value: "Software Engineer Backend" },
+  { label: "Specialty", value: "Backend Systems" },
+  { label: "Domain", value: "SaaS / ERP / Cloud" },
+  { label: "Experience", value: "2023 - Present" }
+];
+
+export const SYSTEM_SIGNALS = [
+  { label: "API design", value: "REST, GraphQL, gRPC" },
+  { label: "Reliability", value: "Idempotency, queues, retries" },
+  { label: "Cloud", value: "AWS, Docker, CI/CD" },
+  { label: "Data", value: "MongoDB, PostgreSQL, Redis" }
 ];
 
 export const EXPERIENCES = [
   {
+    id: "revyrie-2026",
+    company: "Revyrie Global",
+    role: "Software Engineer Backend",
+    period: "July 2026 - Present",
+    tone: "Current mission",
+    achievements: [
+      "Building backend services and cloud-ready product infrastructure for modern business workflows.",
+      "Designing APIs, data flows, and integrations with a focus on reliability, observability, and maintainable delivery.",
+      "Contributing to system architecture decisions across authentication, deployment, and service communication."
+    ],
+    techStack: ["Node.js", "TypeScript", "Cloud", "APIs", "System Design", "DevOps"]
+  },
+  {
     id: "cygnonex-2024",
     company: "Cygnonex Innovation Pvt Ltd",
     role: "Backend Engineer / Full Stack Developer",
-    period: "March 2024 - Present",
+    period: "March 2024 - July 2026",
+    tone: "SaaS + ERP scale-up",
     achievements: [
-      "Developing scalable backend infrastructure for the BillBizz ERP platform.",
-      "Implementing secure user auth & identity with AWS Cognito and JWT.",
-      "Building and managing CI/CD pipelines using Jenkins for streamlined deployments.",
-      "Optimizing API performance and reducing cloud infrastructure costs.",
-      "Integrating multi-tenant architectures for robust SaaS operations."
+      "Developed scalable backend infrastructure for BillBizz ERP and multi-tenant SaaS operations.",
+      "Implemented secure identity and access flows with AWS Cognito, JWT, and role-aware APIs.",
+      "Built CI/CD workflows with Jenkins and improved deployment reliability across active product modules.",
+      "Optimized API performance, data access patterns, and cloud infrastructure cost for production workloads."
     ],
     techStack: ["Node.js", "Express", "MongoDB", "AWS", "Jenkins", "Cognito"]
   },
@@ -33,10 +57,11 @@ export const EXPERIENCES = [
     id: "lexyle-2023",
     company: "Lexyle Technologies, Kerala",
     role: "Backend Developer Intern",
-    period: "Sep 2023 – Feb 2024",
+    period: "Sep 2023 - Feb 2024",
+    tone: "Foundation sprint",
     achievements: [
-      "Built and shipped REST APIs in Node.js/Express.js for internal SaaS tooling used by 3+ clients; contributed to MySQL schema design and query optimisation under senior engineer guidance.",
-      "Integrated Docker-based CI/CD pipelines and wrote unit tests, reducing manual deployment steps and improving release reliability across the team."
+      "Built REST APIs in Node.js and Express.js for internal SaaS tooling while contributing to MySQL schema design.",
+      "Worked with Docker-based delivery flows, unit tests, and senior engineering review cycles."
     ],
     techStack: ["Node.js", "Express.js", "MySQL", "Docker", "CI/CD", "Testing"]
   }
@@ -46,7 +71,7 @@ export const EDUCATION = [
   {
     id: "vkcet-2019-2023",
     institution: "Valia Koonambaikulathamma College of Engineering & Technology",
-    degree: "Bachelor’s Degree in Computer Science",
+    degree: "Bachelor's Degree in Computer Science",
     period: "2019 - 2023"
   }
 ];
@@ -55,83 +80,67 @@ export const PROJECTS = [
   {
     id: "outrelay",
     title: "outrelay",
-    tagline: "Events never lost across service boundaries.",
-    description: "Reliable event relay for distributed systems — ensures messages reach their destination even when services go down, restart, or misbehave. Built for the reality of production microservices.",
+    tagline: "Durable event relay for distributed systems.",
+    description: "Reliably moves events across service boundaries so messages still land when services restart, retry, or misbehave.",
     techStack: ["Microservices", "Event-driven", "Resilience"],
-    link: "https://github.com/MohdThaha/outrelay"
+    link: "https://github.com/MohdThaha/outrelay",
+    accent: "Event mesh"
   },
   {
     id: "saga-orchestrator",
     title: "saga-orchestrator",
-    tagline: "Multi-step transactions never left half-finished.",
-    description: "A SAGA pattern orchestrator for managing complex, multi-service workflows. When one step fails, compensating actions roll back cleanly — no ghost states, no inconsistent data.",
+    tagline: "Workflow coordination for multi-step transactions.",
+    description: "A SAGA pattern orchestrator for service workflows with compensating actions when one step fails.",
     techStack: ["Node.js", "SAGA Pattern", "Distributed Transactions"],
-    link: "https://github.com/MohdThaha/saga-orchestrator"
+    link: "https://github.com/MohdThaha/saga-orchestrator",
+    accent: "Consistency"
   },
   {
     id: "idem-guard",
     title: "idem-guard",
-    tagline: "Endpoints never executed twice accidentally.",
-    description: "Idempotency middleware for Node.js APIs. Duplicate requests — from retries, network blips, or impatient users — are detected and short-circuited before they cause damage.",
-    techStack: ["Express/NestJS Middleware", "Redis/DB Hooks", "API Security"],
-    link: "https://github.com/MohdThaha/idem-guard"
+    tagline: "Idempotency middleware for safer APIs.",
+    description: "Stops duplicate requests from retries, network issues, and impatient users before they create repeated side effects.",
+    techStack: ["Express", "Redis", "API Safety"],
+    link: "https://github.com/MohdThaha/idem-guard",
+    accent: "Request shield"
   },
   {
     id: "aegis",
     title: "Aegis Fraud Detection",
-    tagline: "Intelligent system for detecting and preventing fraudulent activities.",
-    description: "A machine learning and data-driven approach designed to identify anomalies, evaluate risk, and protect systems against fraudulent behaviors in real-time.",
-    techStack: ["Python", "Machine Learning", "Data Science"],
-    link: "https://github.com/MohdThaha/Aegis-Fraud-Detection"
+    tagline: "Risk and anomaly detection system.",
+    description: "A machine learning approach for identifying suspicious activity, scoring risk, and protecting high-value workflows.",
+    techStack: ["Python", "ML", "Data Science"],
+    link: "https://github.com/MohdThaha/Aegis-Fraud-Detection",
+    image: `${publicPath}/assets/images/aegis.png`,
+    accent: "Intelligence"
   },
   {
     id: "sentinel-gateway",
     title: "Sentinel Gateway",
-    tagline: "Robust API gateway for secure microservices routing.",
-    description: "A highly performant API gateway that handles routing, rate limiting, and authenticating incoming requests before proxying them to underlying microservices.",
+    tagline: "Secure gateway for microservice traffic.",
+    description: "Handles routing, rate limiting, and authentication before requests reach downstream services.",
     techStack: ["API Gateway", "Security", "Routing"],
-    link: "https://github.com/MohdThaha/Sentinel-gateway"
-  },
-  {
-    id: "dsar-portal",
-    title: "DSAR Portal",
-    tagline: "Streamlined Data Subject Access Request management.",
-    description: "A comprehensive portal designed to handle, track, and automate user requests regarding their personal information in compliance with standard privacy laws.",
-    techStack: ["Web Portal", "Compliance", "Automation"],
-    link: "https://github.com/MohdThaha/DsarPortal"
-  },
-  {
-    id: "pulse",
-    title: "Pulse Sentiment Analyzer",
-    tagline: "Real-time market sentiment analysis engine.",
-    description: "A real-time tool that ingests diverse data streams to evaluate market sentiment, empowering data-driven financial and business decision-making.",
-    techStack: ["Real-time Processing", "Data Pipelines", "NLP"],
-    link: "https://github.com/MohdThaha/Pulse-Real-time-Market-Sentiment-Analyzer"
+    link: "https://github.com/MohdThaha/Sentinel-gateway",
+    accent: "Edge control"
   },
   {
     id: "datalens-suite",
     title: "DataLens Suite",
-    tagline: "End-to-end data intelligence and ML serving platform.",
-    description: "A robust suite featuring an Anomaly Detection Engine, Decision Intelligence, Exploratory Intelligence, Predictive Modeling, and an ML Model Serving Platform for full-scale data operations.",
-    techStack: ["Machine Learning", "Predictive Modeling", "Model Serving"],
-    link: "https://github.com/MohdThaha/DataLens-Anomaly_Detection_Engine"
-  },
-  {
-    id: "hr-payroll",
-    title: "HR & Payroll",
-    tagline: "Complete HR and payroll management system.",
-    description: "A streamlined platform designed to handle employee records, track attendance, and process complex payroll calculations efficiently and reliably.",
-    techStack: ["Node.js", "Database Design", "ERP"],
-    link: "https://github.com/MohdThaha/HrPayroll"
+    tagline: "ML operations and decision intelligence.",
+    description: "A data intelligence suite for anomaly detection, predictive modeling, exploration, and model serving.",
+    techStack: ["Machine Learning", "Analytics", "Model Serving"],
+    link: "https://github.com/MohdThaha/DataLens-Anomaly_Detection_Engine",
+    image: `${publicPath}/assets/images/datalens.png`,
+    accent: "ML platform"
   }
 ];
 
 export const SKILLS = [
-  { category: "Backend & Core", items: ["Node.js", "Express.js", "NestJS", "TypeScript", "Python", "Go", "GraphQL", "gRPC", "WebSockets"] },
-  { category: "Databases & Messaging", items: ["MongoDB", "PostgreSQL", "Redis", "Elasticsearch", "ClickHouse", "BullMQ", "Kafka", "RabbitMQ"] },
-  { category: "Cloud & Infrastructure", items: ["AWS (ECS, EKS, Lambda, S3, RDS)", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions"] },
-  { category: "Architecture & Design", items: ["Microservices", "Event-Driven Architecture", "CQRS", "SAGA Pattern", "Idempotency", "System Design at Scale", "Multi-tenant SaaS ERP"] },
-  { category: "Security & AI", items: ["AWS Cognito", "OAuth2.0 / JWT", "LLM Integration", "RAG Pipelines", "Vector Databases", "Zero-Trust Architecture"] }
+  { category: "Backend", items: ["Node.js", "Express.js", "NestJS", "TypeScript", "Python", "Go", "GraphQL", "gRPC", "WebSockets"] },
+  { category: "Data & Messaging", items: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Elasticsearch", "BullMQ", "Kafka", "RabbitMQ"] },
+  { category: "Cloud & Delivery", items: ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions", "Nginx", "Linux"] },
+  { category: "Architecture", items: ["Microservices", "Event-Driven Design", "CQRS", "SAGA Pattern", "Idempotency", "Multi-tenant SaaS", "ERP Systems"] },
+  { category: "Security & AI", items: ["AWS Cognito", "OAuth 2.0", "JWT", "RBAC", "LLM Integration", "RAG Pipelines", "Vector Databases"] }
 ];
 
-export const PROFILE_IMG = `${process.env.PUBLIC_URL || '/Portfolio'}/assets/images/hero_img.jpg`;
+export const PROFILE_IMG = `${publicPath}/assets/images/hero_img.jpg`;

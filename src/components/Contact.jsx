@@ -1,69 +1,70 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FiArrowUpRight, FiDownload, FiMail } from 'react-icons/fi';
 import { PERSONAL_INFO } from '../constants';
+
+const channels = [
+  { label: 'Email', value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}`, icon: FiMail },
+  { label: 'LinkedIn', value: 'Professional profile', href: PERSONAL_INFO.linkedin, icon: FaLinkedinIn },
+  { label: 'GitHub', value: 'Repositories and experiments', href: PERSONAL_INFO.github, icon: FaGithub },
+];
 
 const Contact = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col justify-center min-h-[calc(100vh-100px)]"
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full items-center">
-        
-        {/* Massive Text CTA */}
+    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell flex min-h-[calc(100vh-112px)] items-center">
+      <div className="grid w-full gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center">
         <div>
-          <h2 className="text-[clamp(5rem,10vw,12rem)] font-nike font-black uppercase leading-[0.8] tracking-tighter mb-8">
-            LET'S
-            <br />
-            <span className="text-stroke">WORK.</span>
-          </h2>
-          <p className="font-sans text-nike-gray text-xl mb-12 max-w-lg border-l-4 border-nike-volt pl-6">
-            Currently looking for new opportunities to build scalable architectures. Ready to architect the next generation of resilient systems.
+          <p className="micro-label">Contact / Collaboration</p>
+          <h1 className="display-title mt-5 text-balance">
+            Let us build something <span className="serif-word">reliable</span>.
+          </h1>
+          <p className="copy-large mt-7">
+            Best fit: backend-heavy products, SaaS platforms, ERP workflows, integrations, authentication, cloud delivery, and APIs that need to behave under real pressure.
           </p>
-          
-          <a 
-            href={`mailto:${PERSONAL_INFO.email}`}
-            className="btn-nike w-fit text-xl px-12 py-6"
-          >
-            PING ME NOW
-          </a>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a href={`mailto:${PERSONAL_INFO.email}`} className="btn-primary">Start conversation <FiMail size={17} /></a>
+            <a href={PERSONAL_INFO.resume} target="_blank" rel="noreferrer" className="btn-secondary">View resume <FiDownload size={17} /></a>
+          </div>
         </div>
 
-        {/* Links Array */}
-        <div className="flex flex-col gap-6 w-full lg:max-w-md ml-auto">
-          <a 
-            href={PERSONAL_INFO.github}
-            target="_blank"
-            rel="noreferrer"
-            className="nike-panel group flex justify-between items-center bg-nike-white hover:bg-nike-volt border-none text-black"
-          >
-            <span className="font-nike text-4xl font-bold uppercase tracking-widest">GITHUB</span>
-            <span className="font-nike text-4xl transition-transform group-hover:translate-x-2">→</span>
-          </a>
-          
-          <a 
-            href={PERSONAL_INFO.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="nike-panel group flex justify-between items-center"
-          >
-            <span className="font-nike text-4xl font-bold uppercase tracking-widest text-nike-white group-hover:text-nike-volt">LINKEDIN</span>
-            <span className="font-nike text-4xl text-nike-white group-hover:text-nike-volt transition-transform group-hover:translate-x-2">→</span>
-          </a>
-          
-          <a 
-            href={`mailto:${PERSONAL_INFO.email}`}
-            className="nike-panel group flex justify-between items-center"
-          >
-            <span className="font-nike text-4xl font-bold uppercase tracking-widest text-nike-white group-hover:text-nike-volt">EMAIL</span>
-            <span className="font-nike text-4xl text-nike-white group-hover:text-nike-volt transition-transform group-hover:translate-x-2">→</span>
-          </a>
-        </div>
+        <div className="paper p-3">
+          <div className="border border-background/10 p-5" style={{ borderRadius: 8 }}>
+            <div className="mb-5 flex items-start justify-between border-b border-background/10 pb-5">
+              <div>
+                <p className="font-mono text-[0.66rem] font-black uppercase tracking-[0.2em] text-background/[0.45]">Availability signal</p>
+                <h2 className="mt-3 text-3xl font-black leading-tight">Open to serious product work</h2>
+              </div>
+              <span className="mt-2 h-3 w-3 animate-pulse-slow bg-accent shadow-[0_0_24px_rgba(126,255,207,0.8)]" style={{ borderRadius: 999 }} />
+            </div>
 
+            <div className="space-y-3">
+              {channels.map(({ label, value, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={label === 'Email' ? undefined : '_blank'}
+                  rel={label === 'Email' ? undefined : 'noreferrer'}
+                  className="group flex items-center justify-between gap-4 bg-background/[0.055] p-4 text-background transition hover:bg-background hover:text-ink"
+                  style={{ borderRadius: 8 }}
+                >
+                  <span className="flex items-center gap-4">
+                    <span className="grid h-11 w-11 place-items-center border border-background/10 bg-background/10 group-hover:border-ink/[0.15]" style={{ borderRadius: 999 }}>
+                      <Icon size={19} />
+                    </span>
+                    <span>
+                      <span className="block text-lg font-black">{label}</span>
+                      <span className="block text-sm font-semibold opacity-65">{value}</span>
+                    </span>
+                  </span>
+                  <FiArrowUpRight size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

@@ -1,74 +1,88 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PROJECTS } from '../constants';
 import { FaGithub } from 'react-icons/fa';
+import { FiArrowUpRight } from 'react-icons/fi';
+import { PROJECTS } from '../constants';
 
 const Projects = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="max-w-[1600px] mx-auto px-6 md:px-12 py-12 lg:py-24"
-    >
-      <div className="mb-16">
-        <h2 className="text-[clamp(4rem,8vw,8rem)] font-nike font-black uppercase leading-none tracking-tighter">
-          THE <span className="text-nike-volt">BUILDS</span>
-        </h2>
-        <p className="font-sans text-nike-gray max-w-2xl text-lg mt-6 border-l-4 border-nike-volt pl-4">
-          A showcase of systems solving real-world backend challenges—focusing on reliability, idempotency, and distributed data consistency.
+    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell">
+      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+        <div>
+          <p className="micro-label">Case studies / repositories</p>
+          <h1 className="display-title mt-5 text-balance">
+            Systems that show the <span className="serif-word">thinking</span>.
+          </h1>
+        </div>
+        <p className="copy-large lg:pb-3">
+          Reliability primitives, event flow, API safety, fraud intelligence, gateways, and ML serving. Built around problems that appear when products become real.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {PROJECTS.map((project, idx) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: idx * 0.1 }}
-            className="nike-panel group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden"
-          >
-            {/* Background huge number */}
-            <div className="absolute -top-10 -right-4 font-nike font-black text-[12rem] text-nike-darkgray opacity-20 pointer-events-none group-hover:text-nike-volt group-hover:opacity-10 transition-colors duration-500">
-              0{idx + 1}
-            </div>
+      <div className="mt-12 grid gap-4 lg:grid-cols-6">
+        {PROJECTS.map((project, index) => {
+          const wide = index === 0 || index === 3;
+          return (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.06 }}
+              className={`ink-card min-h-[440px] ${wide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
+            >
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="micro-label">{project.accent}</p>
+                    <h2 className="mt-4 text-4xl font-black leading-[0.96] text-ink">{project.title}</h2>
+                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="grid h-12 w-12 shrink-0 place-items-center border border-ink/[0.12] bg-ink/[0.06] text-ink transition hover:bg-ink hover:text-background"
+                    style={{ borderRadius: 999 }}
+                    aria-label={`${project.title} GitHub repository`}
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                </div>
 
-            <div className="flex justify-between items-start mb-12 relative z-10">
-              <h3 className="text-4xl font-nike font-bold text-nike-white uppercase tracking-wider group-hover:text-nike-volt transition-colors">
-                {project.title}
-              </h3>
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="bg-nike-white text-black p-3 hover:bg-nike-volt transition-colors"
-                aria-label="GitHub Repository"
-              >
-                <FaGithub size={24} />
-              </a>
-            </div>
-            
-            <p className="font-nike font-bold uppercase tracking-widest text-nike-volt mb-4 relative z-10">
-              {project.tagline}
-            </p>
-            
-            <p className="font-sans text-nike-gray flex-grow mb-8 relative z-10">
-              {project.description}
-            </p>
+                <div className="my-7 overflow-hidden border border-ink/10 bg-background/[0.45]" style={{ borderRadius: 8 }}>
+                  {project.image ? (
+                    <img src={project.image} alt={`${project.title} preview`} className="h-56 w-full object-cover opacity-90 transition duration-500 hover:scale-[1.03]" />
+                  ) : (
+                    <div className="project-code relative h-56">
+                      <div className="absolute inset-5 grid grid-cols-8 gap-2">
+                        {Array.from({ length: 48 }).map((_, cell) => (
+                          <span key={cell} className={`${cell % 11 === 0 ? 'bg-accent/60' : cell % 7 === 0 ? 'bg-rust/60' : cell % 5 === 0 ? 'bg-sun/45' : 'bg-ink/[0.08]'}`} style={{ borderRadius: 3 }} />
+                        ))}
+                      </div>
+                      <div className="absolute bottom-4 left-4 right-4 border border-ink/10 bg-background/70 p-3 font-mono text-[0.68rem] font-bold uppercase tracking-[0.14em] text-muted backdrop-blur">
+                        npm run solve:{project.id}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-            <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-nike-darkgray relative z-10">
-              {project.techStack.map((tech, i) => (
-                <span key={i} className="font-nike text-sm font-bold tracking-widest uppercase bg-nike-darkgray text-nike-white px-3 py-1 group-hover:bg-nike-white group-hover:text-black transition-colors">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+                <p className="text-xl font-black leading-7 text-ink">{project.tagline}</p>
+                <p className="mt-3 flex-1 text-sm leading-7 text-muted">{project.description}</p>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <span key={tech} className="chip">{tech}</span>
+                  ))}
+                </div>
+
+                <a href={project.link} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent">
+                  Open repo <FiArrowUpRight size={17} />
+                </a>
+              </div>
+            </motion.article>
+          );
+        })}
       </div>
-
-    </motion.div>
+    </motion.section>
   );
 };
 

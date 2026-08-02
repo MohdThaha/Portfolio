@@ -11,6 +11,18 @@ import { useEffect } from 'react';
 const AnimatedRoutes = () => {
   const location = useLocation();
 
+  useEffect(() => {
+    const titles = {
+      '/Portfolio': 'Mohammed Thaha - Software Engineer Backend',
+      '/about': 'About - Mohammed Thaha',
+      '/experience': 'Experience - Mohammed Thaha',
+      '/projects': 'Projects - Mohammed Thaha',
+      '/contact': 'Contact - Mohammed Thaha',
+    };
+
+    document.title = titles[location.pathname] || titles['/Portfolio'];
+  }, [location.pathname]);
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -27,14 +39,15 @@ const AnimatedRoutes = () => {
 
 function App() {
   useEffect(() => {
-    document.title = "THAHA | ARCHITECT";
+    document.title = "Mohammed Thaha | Software Engineer Backend";
   }, []);
 
   return (
     <Router>
-      <div className="bg-background min-h-screen text-nike-white font-sans selection:bg-nike-volt selection:text-black">
+      <div className="min-h-screen bg-background font-sans text-ink selection:bg-accent selection:text-background">
+        <div className="fixed inset-x-0 top-0 z-[1] h-[42vh] bg-[linear-gradient(90deg,rgba(255,122,89,0.18),transparent_34%,rgba(126,255,207,0.13)_68%,rgba(255,210,121,0.12))]" />
         <Navbar />
-        <main className="pt-24 min-h-screen flex flex-col">
+        <main className="relative z-10 min-h-screen pt-24">
           <AnimatedRoutes />
         </main>
       </div>
