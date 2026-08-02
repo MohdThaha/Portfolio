@@ -1,6 +1,6 @@
 {
-  "short_name": "MT Portfolio",
-  "name": "Mohammed Thaha Portfolio",
+  "short_name": "Mohammed Thaha",
+  "name": "Mohammed Thaha - Software Engineer Backend",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0B0A08",
+  "background_color": "#0B0A08"
 }
