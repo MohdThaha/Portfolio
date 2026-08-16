@@ -9,9 +9,9 @@ const Projects = () => {
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell">
       <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
         <div>
-          <p className="micro-label">Case studies / repositories</p>
+          <p className="micro-label">03 / Selected work</p>
           <h1 className="display-title mt-5 text-balance">
-            Systems that show the <span className="serif-word">thinking</span>.
+            Case studies in <span className="serif-word">backend reliability</span>.
           </h1>
         </div>
         <p className="copy-large lg:pb-3">
@@ -28,7 +28,7 @@ const Projects = () => {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.06 }}
-              className={`ink-card min-h-[440px] ${wide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
+              className={`ink-card min-h-[420px] ${wide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
             >
               <div className="relative z-10 flex h-full flex-col">
                 <div className="flex items-start justify-between gap-4">

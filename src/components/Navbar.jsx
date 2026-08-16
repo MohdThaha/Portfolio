@@ -29,25 +29,25 @@ const Navbar = () => {
     <nav className="fixed inset-x-0 top-4 z-50 px-4">
       <div className={`mx-auto flex h-14 max-w-[1500px] items-center justify-between border px-3 transition duration-300 md:px-4 ${scrolled ? 'border-ink/[0.18] bg-background/[0.76] shadow-2xl shadow-black/30 backdrop-blur-2xl' : 'border-ink/10 bg-background/[0.42] backdrop-blur-xl'}`} style={{ borderRadius: 999 }}>
         <Link to="/Portfolio" className="group flex items-center gap-3 pr-2">
-          <span className="grid h-10 w-10 place-items-center bg-ink font-mono text-xs font-black text-background transition group-hover:bg-accent" style={{ borderRadius: 999 }}>
+          <span className="grid h-10 w-10 place-items-center border border-ink/10 bg-surface font-mono text-xs font-black text-accent shadow-sm transition group-hover:border-accent/50 group-hover:bg-accent group-hover:text-background" style={{ borderRadius: 999 }}>
             MT
           </span>
-          <span className="hidden font-mono text-[0.68rem] font-bold uppercase tracking-[0.18em] text-muted sm:block">
-            Backend / Cloud / SaaS
+          <span className="hidden font-mono text-[0.68rem] font-bold uppercase tracking-[0.18em] text-ink sm:block">
+            Mohammed Thaha
           </span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
-          {links.map((link) => {
+          {links.map((link, index) => {
             const active = location.pathname === link.path || (link.path === '/Portfolio' && location.pathname === '/');
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-[0.18em] transition ${active ? 'bg-ink text-background' : 'text-muted hover:bg-ink/[0.08] hover:text-ink'}`}
+                className={`px-4 py-2 font-mono text-[0.68rem] font-bold uppercase tracking-[0.14em] transition ${active ? 'bg-ink text-background shadow-sm' : 'text-muted hover:bg-ink/[0.06] hover:text-ink'}`}
                 style={{ borderRadius: 999 }}
               >
-                {link.label}
+                <span className={active ? 'text-background/70' : 'text-accent'}>0{index + 1}.</span> {link.label}
               </Link>
             );
           })}
@@ -73,9 +73,9 @@ const Navbar = () => {
             className="mx-auto mt-2 max-w-[1500px] border border-ink/[0.12] bg-background/[0.94] p-2 shadow-2xl shadow-black/35 backdrop-blur-2xl md:hidden"
             style={{ borderRadius: 18 }}
           >
-            {links.map((link) => (
+            {links.map((link, index) => (
               <Link key={link.path} to={link.path} className="block px-4 py-4 font-mono text-xs font-bold uppercase tracking-[0.18em] text-ink">
-                {link.label}
+                <span className="text-accent">0{index + 1}.</span> {link.label}
               </Link>
             ))}
           </motion.div>

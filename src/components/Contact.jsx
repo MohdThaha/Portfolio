@@ -15,9 +15,9 @@ const Contact = () => {
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell flex min-h-[calc(100vh-112px)] items-center">
       <div className="grid w-full gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center">
         <div>
-          <p className="micro-label">Contact / Collaboration</p>
+          <p className="micro-label">04 / Contact</p>
           <h1 className="display-title mt-5 text-balance">
-            Let us build something <span className="serif-word">reliable</span>.
+            Let us build something <span className="serif-word">worth trusting</span>.
           </h1>
           <p className="copy-large mt-7">
             Best fit: backend-heavy products, SaaS platforms, ERP workflows, integrations, authentication, cloud delivery, and APIs that need to behave under real pressure.
@@ -35,7 +35,7 @@ const Contact = () => {
                 <p className="font-mono text-[0.66rem] font-black uppercase tracking-[0.2em] text-background/[0.45]">Availability signal</p>
                 <h2 className="mt-3 text-3xl font-black leading-tight">Open to serious product work</h2>
               </div>
-              <span className="mt-2 h-3 w-3 animate-pulse-slow bg-accent shadow-[0_0_24px_rgba(126,255,207,0.8)]" style={{ borderRadius: 999 }} />
+              <span className="mt-2 h-3 w-3 animate-pulse-slow bg-accent shadow-[0_0_24px_rgba(36,88,255,0.45)]" style={{ borderRadius: 999 }} />
             </div>
 
             <div className="space-y-3">

@@ -8,9 +8,9 @@ const Experience = () => {
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell">
       <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
         <div className="lg:sticky lg:top-28 lg:h-fit">
-          <p className="micro-label">Career log</p>
+          <p className="micro-label">02 / Experience</p>
           <h1 className="display-title mt-5 text-balance">
-            Built through <span className="serif-word">production</span>.
+            Production work, shaped into <span className="serif-word">systems</span>.
           </h1>
           <p className="copy-large mt-7">
             A backend-heavy path through SaaS tooling, ERP scale-up work, cloud services, authentication, delivery pipelines, and current Revyrie Global systems work.

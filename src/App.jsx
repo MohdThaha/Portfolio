@@ -6,7 +6,9 @@ import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import { PERSONAL_INFO } from './constants';
 import { useEffect } from 'react';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -45,8 +47,21 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background font-sans text-ink selection:bg-accent selection:text-background">
-        <div className="fixed inset-x-0 top-0 z-[1] h-[42vh] bg-[linear-gradient(90deg,rgba(255,122,89,0.18),transparent_34%,rgba(126,255,207,0.13)_68%,rgba(255,210,121,0.12))]" />
+        <div className="fixed inset-x-0 top-0 z-[1] h-[46vh] bg-[linear-gradient(135deg,rgba(36,88,255,0.14),transparent_38%,rgba(22,164,107,0.1)_70%,rgba(124,92,255,0.1))]" />
         <Navbar />
+        <aside className="site-rail left-8 hidden xl:flex">
+          <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <FaGithub size={18} />
+          </a>
+          <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <FaLinkedinIn size={17} />
+          </a>
+        </aside>
+        <aside className="site-rail right-8 hidden xl:flex">
+          <a href={`mailto:${PERSONAL_INFO.email}`} className="vertical-email">
+            {PERSONAL_INFO.email}
+          </a>
+        </aside>
         <main className="relative z-10 min-h-screen pt-24">
           <AnimatedRoutes />
         </main>

@@ -6,12 +6,13 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
     scroll-behavior: smooth;
-    background: #0b0a08;
+    background: #f6f8fc;
+    overflow-x: hidden;
   }
 
   body {
@@ -27,10 +28,10 @@
     pointer-events: none;
     opacity: 0.62;
     background:
-      linear-gradient(115deg, rgba(255, 255, 255, 0.055), transparent 18%, rgba(255, 122, 89, 0.09) 38%, transparent 58%, rgba(126, 255, 207, 0.08) 78%, transparent),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 96px),
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 96px);
-    mask-image: linear-gradient(to bottom, black 0%, black 68%, transparent 100%);
+      linear-gradient(115deg, rgba(255, 255, 255, 0.35), transparent 20%, rgba(36, 88, 255, 0.08) 42%, transparent 62%, rgba(22, 164, 107, 0.06) 82%, transparent),
+      repeating-linear-gradient(90deg, rgba(18,24,38,0.045) 0 1px, transparent 1px 88px),
+      repeating-linear-gradient(0deg, rgba(18,24,38,0.035) 0 1px, transparent 1px 88px);
+    mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
   }
 
   body::after {
@@ -39,7 +40,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.2;
+    opacity: 0.08;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
   }
 
@@ -48,27 +49,27 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0b0a08;
+    background: #f6f8fc;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #f2eee3;
-    border: 3px solid #0b0a08;
+    background: #121826;
+    border: 3px solid #f6f8fc;
     border-radius: 999px;
   }
 }
 
 @layer components {
   .page-shell {
-    @apply relative z-10 mx-auto w-full max-w-[1500px] px-4 py-10 md:px-8 lg:px-12 lg:py-[4.5rem];
+    @apply relative z-10 mx-auto w-full max-w-[1180px] px-5 py-8 md:px-8 md:py-12 lg:px-10 lg:py-[5rem];
   }
 
   .micro-label {
-    @apply font-mono text-[0.68rem] font-bold uppercase tracking-[0.24em] text-accent;
+    @apply font-mono text-[0.72rem] font-bold uppercase tracking-[0.2em] text-accent;
   }
 
   .display-title {
-    @apply font-sans text-[clamp(3.4rem,9vw,9.8rem)] font-black leading-[0.82] tracking-normal text-ink;
+    @apply font-sans text-[clamp(3.25rem,8.4vw,7.8rem)] font-black leading-[0.92] tracking-normal text-ink;
   }
 
   .serif-word {
@@ -76,23 +77,23 @@
   }
 
   .copy-large {
-    @apply max-w-2xl text-base leading-8 text-muted md:text-xl md:leading-9;
+    @apply max-w-2xl text-base font-medium leading-8 text-muted md:text-xl md:leading-9;
   }
 
   .surface {
-    @apply border border-ink/[0.12] bg-ink/[0.055] backdrop-blur-2xl;
-    border-radius: 8px;
-    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+    @apply border border-ink/[0.1] bg-surface/90 backdrop-blur-xl;
+    border-radius: 14px;
+    box-shadow: 0 18px 60px rgba(20, 33, 61, 0.08);
   }
 
   .paper {
-    @apply border border-background/10 bg-ink text-background;
-    border-radius: 8px;
-    box-shadow: 0 24px 80px rgba(242, 238, 227, 0.12);
+    @apply border border-ink/10 bg-ink text-background;
+    border-radius: 14px;
+    box-shadow: 0 26px 70px rgba(18, 24, 38, 0.18);
   }
 
   .ink-card {
-    @apply surface relative overflow-hidden p-5 transition duration-500;
+    @apply surface relative overflow-hidden p-5 transition duration-300 md:p-6;
   }
 
   .ink-card::before {
@@ -101,15 +102,14 @@
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(135deg, rgba(242, 238, 227, 0.13), transparent 28%),
-      linear-gradient(315deg, rgba(126, 255, 207, 0.16), transparent 36%),
-      linear-gradient(45deg, rgba(255, 210, 121, 0.14), transparent 42%);
+      linear-gradient(135deg, rgba(36, 88, 255, 0.09), transparent 30%),
+      linear-gradient(315deg, rgba(22, 164, 107, 0.11), transparent 38%);
     opacity: 0;
     transition: opacity 400ms ease;
   }
 
   .ink-card:hover {
-    @apply -translate-y-1 border-ink/25 bg-ink/[0.075];
+    @apply -translate-y-1 border-accent/35 bg-surface;
   }
 
   .ink-card:hover::before {
@@ -117,17 +117,17 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-3 bg-ink px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-background transition duration-300 hover:bg-accent focus:outline-none focus:ring-4 focus:ring-accent/25;
+    @apply inline-flex min-h-12 items-center justify-center gap-3 bg-accent px-5 py-3 text-center font-mono text-xs font-bold uppercase tracking-[0.14em] text-background transition duration-300 hover:-translate-y-0.5 hover:bg-ink focus:outline-none focus:ring-4 focus:ring-accent/25;
     border-radius: 999px;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-3 border border-ink/[0.14] bg-ink/[0.055] px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.18em] text-ink transition duration-300 hover:border-accent/[0.55] hover:text-accent focus:outline-none focus:ring-4 focus:ring-accent/15;
+    @apply inline-flex min-h-12 items-center justify-center gap-3 border border-ink/[0.14] bg-surface px-5 py-3 text-center font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink transition duration-300 hover:-translate-y-0.5 hover:border-accent/[0.55] hover:text-accent focus:outline-none focus:ring-4 focus:ring-accent/15;
     border-radius: 999px;
   }
 
   .chip {
-    @apply inline-flex items-center border border-ink/[0.12] bg-ink/[0.055] px-3 py-1.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.14em] text-muted transition duration-300;
+    @apply inline-flex items-center border border-ink/[0.1] bg-background px-3 py-1.5 font-mono text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted transition duration-300;
     border-radius: 999px;
   }
 
@@ -144,17 +144,52 @@
   clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
 }
 
+.hero-dossier {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-photo-frame {
+  position: relative;
+  min-height: clamp(24rem, 112vw, 36rem);
+}
+
+.hero-photo-backdrop,
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(18, 24, 38, 0.12);
+  background: rgba(36, 88, 255, 0.12);
+}
+
+.hero-photo-backdrop {
+  transform: rotate(1.4deg);
+}
+
+.hero-photo {
+  inset: 0.75rem;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(18, 24, 38, 0.16);
+}
+
+.hero-data-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
 .system-lines {
   background:
-    linear-gradient(90deg, rgba(126,255,207,0.6) 0 1px, transparent 1px 100%),
-    linear-gradient(180deg, rgba(242,238,227,0.14) 0 1px, transparent 1px 100%);
+    linear-gradient(90deg, rgba(36,88,255,0.35) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, rgba(18,24,38,0.08) 0 1px, transparent 1px 100%);
   background-size: 24px 24px;
 }
 
 .project-code {
   background-image:
-    linear-gradient(90deg, rgba(126, 255, 207, 0.14), transparent 1px),
-    linear-gradient(rgba(242, 238, 227, 0.08), transparent 1px);
+    linear-gradient(90deg, rgba(36, 88, 255, 0.13), transparent 1px),
+    linear-gradient(rgba(18, 24, 38, 0.07), transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -169,7 +204,7 @@
 .corner-garnish::after {
   content: "";
   position: absolute;
-  background: #7EFFCF;
+  background: #2458FF;
 }
 
 .corner-garnish::before {
@@ -185,19 +220,19 @@
 .sparkline {
   height: 36px;
   background:
-    linear-gradient(135deg, transparent 0 18%, rgba(126,255,207,0.9) 18% 20%, transparent 20% 32%, rgba(255,210,121,0.9) 32% 34%, transparent 34% 48%, rgba(255,122,89,0.9) 48% 50%, transparent 50% 68%, rgba(126,255,207,0.9) 68% 70%, transparent 70% 100%);
-  filter: drop-shadow(0 0 14px rgba(126, 255, 207, 0.2));
+    linear-gradient(135deg, transparent 0 18%, rgba(36,88,255,0.9) 18% 20%, transparent 20% 32%, rgba(22,164,107,0.9) 32% 34%, transparent 34% 48%, rgba(239,91,69,0.9) 48% 50%, transparent 50% 68%, rgba(36,88,255,0.9) 68% 70%, transparent 70% 100%);
+  filter: drop-shadow(0 0 14px rgba(36, 88, 255, 0.18));
 }
 
 .browser-workbench {
   position: relative;
-  border: 1px solid rgba(242, 238, 227, 0.12);
+  border: 1px solid rgba(18, 24, 38, 0.1);
   background:
-    linear-gradient(180deg, rgba(242, 238, 227, 0.08), rgba(242, 238, 227, 0.035)),
-    linear-gradient(135deg, rgba(255, 122, 89, 0.16), transparent 34%, rgba(126, 255, 207, 0.13));
-  border-radius: 8px;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
+    linear-gradient(135deg, rgba(36, 88, 255, 0.12), transparent 34%, rgba(22, 164, 107, 0.1));
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 36px 120px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 28px 90px rgba(18, 24, 38, 0.1);
 }
 
 .browser-workbench::before {
@@ -206,13 +241,14 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 18%, rgba(255, 210, 121, 0.18), transparent 22%),
-    radial-gradient(circle at 88% 72%, rgba(126, 255, 207, 0.14), transparent 26%);
+    linear-gradient(90deg, rgba(18,24,38,0.045) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(18,24,38,0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
 .tab-chip {
-  border: 1px solid rgba(242, 238, 227, 0.12);
-  background: rgba(11, 10, 8, 0.48);
+  border: 1px solid rgba(18, 24, 38, 0.1);
+  background: rgba(255, 255, 255, 0.78);
   border-radius: 999px;
 }
 
@@ -229,8 +265,43 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 999px;
-  background: #7EFFCF;
-  box-shadow: 0 0 18px rgba(126, 255, 207, 0.55);
+  background: #2458FF;
+  box-shadow: 0 0 18px rgba(36, 88, 255, 0.28);
+}
+
+.site-rail {
+  position: fixed;
+  bottom: 0;
+  z-index: 20;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  color: #5e697d;
+}
+
+.site-rail::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 5.5rem;
+  background: rgba(18, 24, 38, 0.18);
+}
+
+.site-rail a {
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.site-rail a:hover {
+  color: #2458ff;
+  transform: translateY(-2px);
+}
+
+.vertical-email {
+  writing-mode: vertical-rl;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
 .tab-shine {
@@ -243,7 +314,7 @@
   position: absolute;
   inset: 0;
   transform: translateX(-120%);
-  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18), transparent 70%);
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.32), transparent 70%);
   animation: tabShine 5s ease-in-out infinite;
 }
 
@@ -266,5 +337,105 @@
   }
   78%, 100% {
     transform: translateX(120%);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-dossier {
+    min-height: 620px;
+  }
+
+  .hero-photo-frame {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+  }
+
+  .hero-photo-backdrop,
+  .hero-photo {
+    clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+  }
+
+  .hero-photo-backdrop {
+    transform: rotate(2deg);
+  }
+
+  .hero-photo {
+    inset: 0.75rem;
+    transform: rotate(-1deg);
+  }
+
+  .hero-data-grid {
+    position: absolute;
+    inset: 2rem 1.5rem 1.25rem 0;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 18rem);
+    align-content: space-between;
+    pointer-events: none;
+  }
+
+  .hero-data-grid > * {
+    pointer-events: auto;
+  }
+
+  .hero-data-grid > :first-child {
+    align-self: end;
+    max-width: 18rem;
+  }
+
+  .hero-data-grid > :nth-child(2) {
+    grid-column: 2;
+    align-self: start;
+  }
+
+  .hero-data-grid > :last-child {
+    grid-column: 2;
+    align-self: end;
+  }
+}
+
+@media (max-width: 767px) {
+  .micro-label {
+    letter-spacing: 0.16em;
+  }
+
+  .display-title {
+    overflow-wrap: anywhere;
+  }
+
+  .hero-photo-backdrop,
+  .hero-photo {
+    border-radius: 8px;
+  }
+
+  .hero-photo img {
+    object-position: 50% 18%;
+  }
+
+  .hero-data-grid {
+    order: -1;
+  }
+
+  .browser-workbench .tab-chip {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .ink-card {
+    min-height: auto;
+  }
+
+  .chip {
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .display-title {
+    font-size: clamp(2.8rem, 17vw, 4.1rem);
   }
 }

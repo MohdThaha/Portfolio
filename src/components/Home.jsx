@@ -26,7 +26,7 @@ const Home = () => {
               transition={{ delay: 0.08 }}
               className="display-title mt-5 max-w-5xl text-balance"
             >
-              Backend systems with a <span className="serif-word">product soul</span>.
+              Backend engineer building <span className="serif-word">reliable products</span>.
             </motion.h1>
 
             <motion.p
@@ -39,7 +39,7 @@ const Home = () => {
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }} className="mt-8 flex flex-wrap gap-3">
-              <Link to="/projects" className="btn-primary">See builds <FiArrowUpRight size={17} /></Link>
+              <Link to="/projects" className="btn-primary">View work <FiArrowUpRight size={17} /></Link>
               <a href={PERSONAL_INFO.resume} target="_blank" rel="noreferrer" className="btn-secondary">Resume <FiDownload size={17} /></a>
             </motion.div>
           </div>
@@ -54,41 +54,46 @@ const Home = () => {
           </motion.div>
         </div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.96, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ delay: 0.18 }} className="relative min-h-[620px]">
+        <motion.div initial={{ opacity: 0, scale: 0.96, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ delay: 0.18 }} className="hero-dossier">
           <span className="corner-garnish right-0 top-0 rotate-180 opacity-70" />
-          <div className="absolute inset-0 rotate-2 border border-ink/10 bg-rust/20 hero-mask" />
-          <div className="absolute inset-3 -rotate-1 overflow-hidden bg-surface hero-mask">
-            <img src={PROFILE_IMG} alt="Mohammed Thaha" className="h-full w-full object-cover saturate-75 contrast-110" />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_20%,rgba(11,10,8,0.92)_100%)]" />
-          </div>
 
-          <div className="paper tab-shine absolute bottom-5 left-0 max-w-[18rem] p-5 md:left-6">
-            <p className="font-mono text-[0.62rem] font-black uppercase tracking-[0.2em] text-background/[0.55]">Current mission</p>
-            <h2 className="mt-3 text-2xl font-black leading-none">{currentRole.role}</h2>
-            <p className="mt-2 text-sm font-black uppercase tracking-[0.12em] text-background/[0.55]">{currentRole.company}</p>
-            <p className="mt-3 text-sm font-semibold leading-6 text-background/70">{currentRole.period}</p>
-          </div>
-
-          <div className="surface absolute right-0 top-8 w-[18rem] overflow-hidden p-4 md:right-6">
-            <div className="mb-4 flex items-center gap-2 border-b border-ink/10 pb-3">
-              <FiTerminal className="text-accent" />
-              <span className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted">live system</span>
-            </div>
-            <div className="space-y-3">
-              {commandRows.map((row) => (
-                <div key={row.k} className="flex items-center justify-between gap-4 font-mono text-[0.72rem]">
-                  <span className="text-muted">{row.k}</span>
-                  <span className="text-right font-bold text-ink">{row.v}</span>
-                </div>
-              ))}
+          <div className="hero-photo-frame">
+            <div className="hero-photo-backdrop" />
+            <div className="hero-photo">
+              <img src={PROFILE_IMG} alt="Mohammed Thaha" className="h-full w-full object-cover saturate-75 contrast-110" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,10,8,0.05)_0%,rgba(11,10,8,0.92)_100%)]" />
             </div>
           </div>
 
-          <div className="surface absolute bottom-28 right-2 hidden w-48 p-4 md:block">
-            <FiServer className="text-sun" />
-            <p className="mt-4 font-mono text-[0.66rem] font-bold uppercase tracking-[0.16em] text-muted">Focus</p>
-            <p className="mt-2 text-lg font-black leading-tight">SaaS, ERP, APIs, cloud delivery</p>
-            <div className="sparkline mt-4" aria-hidden="true" />
+          <div className="hero-data-grid">
+            <div className="paper tab-shine p-5">
+            <p className="font-mono text-[0.62rem] font-black uppercase tracking-[0.2em] text-background/[0.55]">01 / Current</p>
+              <h2 className="mt-3 text-2xl font-black leading-none">{currentRole.role}</h2>
+              <p className="mt-2 text-sm font-black uppercase tracking-[0.12em] text-background/[0.55]">{currentRole.company}</p>
+              <p className="mt-3 text-sm font-semibold leading-6 text-background/70">{currentRole.period}</p>
+            </div>
+
+            <div className="surface overflow-hidden p-4">
+              <div className="mb-4 flex items-center gap-2 border-b border-ink/10 pb-3">
+                <FiTerminal className="text-accent" />
+                <span className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.18em] text-muted">02 / Stack signal</span>
+              </div>
+              <div className="space-y-3">
+                {commandRows.map((row) => (
+                  <div key={row.k} className="grid grid-cols-[0.7fr_1fr] items-center gap-3 font-mono text-[0.72rem]">
+                    <span className="text-muted">{row.k}</span>
+                    <span className="text-right font-bold text-ink">{row.v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="surface p-4">
+              <FiServer className="text-sun" />
+              <p className="mt-4 font-mono text-[0.66rem] font-bold uppercase tracking-[0.16em] text-muted">03 / Focus</p>
+              <p className="mt-2 text-lg font-black leading-tight">SaaS, ERP, APIs, cloud delivery</p>
+              <div className="sparkline mt-4" aria-hidden="true" />
+            </div>
           </div>
         </motion.div>
       </div>
@@ -118,7 +123,7 @@ const Home = () => {
         </div>
         <div className="relative z-10 grid gap-6 p-5 md:p-7 lg:grid-cols-[0.78fr_1.22fr]">
           <div className="paper p-6">
-            <p className="font-mono text-[0.66rem] font-black uppercase tracking-[0.2em] text-background/50">Current tab</p>
+            <p className="font-mono text-[0.66rem] font-black uppercase tracking-[0.2em] text-background/50">Selected profile</p>
             <h2 className="mt-5 text-5xl font-black leading-[0.88] md:text-6xl">
               Software Engineer Backend
             </h2>

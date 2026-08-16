@@ -15,9 +15,9 @@ const About = () => {
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="page-shell">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
         <div>
-          <p className="micro-label">About the builder</p>
+          <p className="micro-label">01 / About</p>
           <h1 className="display-title mt-5 text-balance">
-            I turn business mess into <span className="serif-word">clean APIs</span>.
+            I turn product complexity into <span className="serif-word">clear systems</span>.
           </h1>
         </div>
         <div className="paper p-6 md:p-8">
@@ -42,7 +42,7 @@ const About = () => {
 
       <div className="mt-16 grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="surface p-6 md:p-8">
-          <p className="micro-label">System signature</p>
+          <p className="micro-label">02 / System signature</p>
           <div className="mt-7 space-y-5">
             {SYSTEM_SIGNALS.map((signal) => (
               <div key={signal.label} className="border-b border-ink/10 pb-5">
