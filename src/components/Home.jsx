@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiArrowUpRight, FiDownload, FiGitCommit, FiServer, FiTerminal } from 'react-icons/fi';
 import { EXPERIENCES, HIGHLIGHTS, PERSONAL_INFO, PROFILE_IMG, PROJECTS, SYSTEM_SIGNALS } from '../constants';
+import PacketGame from './PacketGame';
 
 const commandRows = [
   { k: 'service', v: 'orders.api.revyrie' },
@@ -26,7 +27,7 @@ const Home = () => {
               transition={{ delay: 0.08 }}
               className="display-title mt-5 max-w-5xl text-balance"
             >
-              Backend engineer building <span className="serif-word">reliable products</span>.
+              Software engineer for <span className="serif-word">playful, reliable systems</span>.
             </motion.h1>
 
             <motion.p
@@ -60,8 +61,8 @@ const Home = () => {
           <div className="hero-photo-frame">
             <div className="hero-photo-backdrop" />
             <div className="hero-photo">
-              <img src={PROFILE_IMG} alt="Mohammed Thaha" className="h-full w-full object-cover saturate-75 contrast-110" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,10,8,0.05)_0%,rgba(11,10,8,0.92)_100%)]" />
+              <img src={PROFILE_IMG} alt="Stylized portrait of Mohammed Thaha" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,247,234,0.08)_62%,rgba(255,247,234,0.48)_100%)]" />
             </div>
           </div>
 
@@ -107,6 +108,8 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      <PacketGame />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}

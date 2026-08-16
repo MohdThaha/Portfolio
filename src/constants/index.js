@@ -143,4 +143,4 @@ export const SKILLS = [
   { category: "Security & AI", items: ["AWS Cognito", "OAuth 2.0", "JWT", "RBAC", "LLM Integration", "RAG Pipelines", "Vector Databases"] }
 ];
 
-export const PROFILE_IMG = `${publicPath}/assets/images/hero_img.jpg`;
+export const PROFILE_IMG = `${publicPath}/assets/images/portrait-editorial.png`;

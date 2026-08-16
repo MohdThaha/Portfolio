@@ -47,7 +47,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background font-sans text-ink selection:bg-accent selection:text-background">
-        <div className="fixed inset-x-0 top-0 z-[1] h-[46vh] bg-[linear-gradient(135deg,rgba(36,88,255,0.14),transparent_38%,rgba(22,164,107,0.1)_70%,rgba(124,92,255,0.1))]" />
+        <div className="fixed inset-x-0 top-0 z-[1] h-[46vh] bg-[linear-gradient(135deg,rgba(49,87,255,0.13),transparent_38%,rgba(24,160,88,0.1)_70%,rgba(240,93,59,0.08))]" />
         <Navbar />
         <aside className="site-rail left-8 hidden xl:flex">
           <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" aria-label="GitHub">

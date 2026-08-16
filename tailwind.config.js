@@ -11,20 +11,20 @@ module.exports = {
         nike: ['DM Sans', 'system-ui', 'sans-serif'],
       },
       colors: {
-        background: '#F6F8FC',
-        surface: '#FFFFFF',
+        background: '#FFF7EA',
+        surface: '#FFFCF5',
         ink: '#121826',
-        muted: '#5E697D',
-        accent: '#2458FF',
-        sun: '#16A46B',
-        rust: '#EF5B45',
+        muted: '#687082',
+        accent: '#3157FF',
+        sun: '#18A058',
+        rust: '#F05D3B',
         violet: '#7C5CFF',
         nike: {
           white: '#F2F7F4',
           black: '#07100F',
           gray: '#9BB0AA',
           darkgray: '#27413D',
-          volt: '#2458FF',
+          volt: '#3157FF',
         }
       },
       animation: {

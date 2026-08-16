@@ -35,7 +35,7 @@ const Contact = () => {
                 <p className="font-mono text-[0.66rem] font-black uppercase tracking-[0.2em] text-background/[0.45]">Availability signal</p>
                 <h2 className="mt-3 text-3xl font-black leading-tight">Open to serious product work</h2>
               </div>
-              <span className="mt-2 h-3 w-3 animate-pulse-slow bg-accent shadow-[0_0_24px_rgba(36,88,255,0.45)]" style={{ borderRadius: 999 }} />
+              <span className="mt-2 h-3 w-3 animate-pulse-slow bg-accent shadow-[0_0_24px_rgba(49,87,255,0.45)]" style={{ borderRadius: 999 }} />
             </div>
 
             <div className="space-y-3">
